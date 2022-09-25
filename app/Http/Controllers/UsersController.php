@@ -23,7 +23,7 @@ class UsersController extends Controller
     // 显示所有用户列表的页面
     public function index()
     {
-        $users = User::all();
+        $users = User::paginate(6);
         return view('users.index', compact('users'));
     }
 
