@@ -12,12 +12,19 @@ class UsersController extends Controller
     {
         // 使用 Laravel 提供身份验证（Auth）中间件来过滤未登录用户的 edit, update 动作
         $this->middleware('auth', [
-            'except' => ['show', 'create', 'store']
+            'except' => ['show', 'create', 'store', 'index']
         ]);
 
         $this->middleware('guest', [
             'only' => ['create']
         ]);
+    }
+
+    // 显示所有用户列表的页面
+    public function index()
+    {
+        $users = User::all();
+        return view('users.index', compact('users'));
     }
 
     // 创建用户的页面
