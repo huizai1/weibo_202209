@@ -12,6 +12,11 @@ class SessionsController extends Controller
         $this->middleware('guest', [
             'only' => ['create']
         ]);
+
+        // 限流 10 分钟十次
+        $this->middleware('throttle:10,10', [
+            'only' => ['store']
+        ]);
     }
 
     // 创建会话的页面，返回登录视图
