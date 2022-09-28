@@ -58,4 +58,10 @@ class User extends Authenticatable
         $hash = md5(strtolower(trim($this->attributes['email'])));
         return "https://cdn.sep.cc/avatar/$hash?s=$size";
     }
+
+    // 指明一个用户拥有多条微博
+    public function statuses()
+    {
+        return $this->hasMany(Status::class);
+    }
 }
